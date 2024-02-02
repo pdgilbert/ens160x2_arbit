@@ -1,0 +1,45 @@
+[package]
+authors = ["pdGilbert"]
+categories = ["embedded", "no-std"]
+description = "embedded-hal-bus example with rtic_sync::arbiter and 2 eco160 sensors"
+keywords = ["driver", "i2c", "embedded-hal-bus", "example"]
+license = "MIT OR Apache-2.0"
+name = "embedded-hal-bus_example"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+stm32f4xx-hal = { version = "0.20.0", optional = true } 
+stm32h7xx-hal = { git = "https://github.com/stm32-rs/stm32h7xx-hal", optional = true , branch = "eh-v1.0"}
+
+#ens160        = { git = "https://github.com/teamplayer3/ens160", features = ["no-std"], default-features = false }
+# above need no-std fix. See
+#https://github.com/teamplayer3/ens160/issues
+ens160         = { git = "https://github.com/pdgilbert/ens160", features = ["no-std"], default-features = false }
+
+rtic = { version = "2.0.1", features=["thumbv7-backend", "rtic-monotonics"], optional = true  }
+rtic-monotonics = { version = "1.5.0", features = [ "cortex-m-systick"], optional = true }
+rtic-sync =  { version = "1.2.0", features = [ "unstable"], optional = true }
+
+#rtic = { git = "https://github.com/rtic-rs/rtic", features=["thumbv7-backend", "rtic-monotonics"], optional = true  }
+#rtic-monotonics = { git = "https://github.com/rtic-rs/rtic", features = [ "cortex-m-systick"], optional = true }
+#   this gives   use of undeclared crate or module `rtic_sync` ??
+#rtic-sync = { git = "https://github.com/rtic-rs/rtic", optional = true }
+
+embedded-hal = "1.0"
+embedded-hal-bus = "0.1"
+embedded-graphics = ">=0.7"
+
+heapless = "0.7"
+cortex-m-rt = ">=0.7.0"
+panic-semihosting    = { version = ">=0.5.2" }
+cortex-m-semihosting = { version = "0.3.7" }
+
+
+[features]
+stm32f4xx = ["stm32f4xx-hal", "rtic", "rtic-monotonics", "rtic-sync" ] 
+stm32h7xx = ["stm32h7xx-hal/rt", "rtic", "rtic-monotonics", "rtic-sync" ]
+
+stm32f401     = ["stm32f4xx-hal/stm32f401"  ] 
+stm32f411     = ["stm32f4xx-hal/stm32f411"  ] 
+stm32h742     = ["stm32h7xx-hal/stm32h742"  ]
