@@ -2,7 +2,7 @@
 
 ## Summary
 
-This is a (so far not working attempt) example of sharing i2c bus with two ens160 sensors in `rtic`.
+This is a (so far not working attempt) example of sharing `i2c` bus with two `ens160` sensors in `rtic`.
 It uses `embedded-hal-1.0.0`.
 
 Compile with
