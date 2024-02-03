@@ -80,7 +80,7 @@ mod app {
    }
 
    #[cfg(feature = "stm32h7xx")]
-   pub fn setup_from_dp(dp: Peripherals) ->  ( I2cType<I2C1>, impl DelayNs) { 
+   pub fn setup_from_dp(dp: Peripherals) ->  ( I2c<I2C1>, impl DelayNs) { 
       let rcc = dp.RCC.constrain();
       let vos = dp.PWR.constrain().freeze();
       let ccdr = rcc.sys_ck(100.MHz()).freeze(vos, &dp.SYSCFG); 
