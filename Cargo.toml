@@ -12,10 +12,7 @@ edition = "2021"
 stm32f4xx-hal = { version = "0.20.0", optional = true } 
 stm32h7xx-hal = { git = "https://github.com/stm32-rs/stm32h7xx-hal", optional = true , branch = "eh-v1.0"}
 
-#ens160        = { git = "https://github.com/teamplayer3/ens160", features = ["no-std"], default-features = false }
-# above need no-std fix. See
-#https://github.com/teamplayer3/ens160/issues
-ens160         = { git = "https://github.com/pdgilbert/ens160", features = ["no-std"], default-features = false }
+ens160        = { git = "https://github.com/teamplayer3/ens160", default-features = false }
 
 rtic = { version = "2.0.1", features=["thumbv7-backend", "rtic-monotonics"], optional = true  }
 rtic-monotonics = { version = "1.5.0", features = [ "cortex-m-systick"], optional = true }
